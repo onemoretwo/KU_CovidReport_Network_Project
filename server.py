@@ -47,5 +47,7 @@ while True:
     print(province)
     data = getCovidData(province)
     conn.send(str(data).encode())
-
+    
+    # if(province == "end"):
+    #     conn.close()
     conn.close()
