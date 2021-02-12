@@ -17,7 +17,6 @@ print("Server is ready")
 def getCovidData(province = "all"):
     api = "https://covid19.th-stat.com/api/open/cases/sum"
     response = requests.get(api)
-    print(response.status_code)
     jobj = json.loads(json.dumps(response.json(), sort_keys=True, indent=4))
 
     for key in jobj:
@@ -42,12 +41,11 @@ def getCovidData(province = "all"):
 while True:
     conn,addr = srv.accept() #accepts the connection
     print('...connected by', addr)
-     
-    province = conn.recv(BUFFER).decode()
-    print(province)
-    data = getCovidData(province)
-    conn.send(str(data).encode())
-    
-    # if(province == "end"):
-    #     conn.close()
+    while True:
+        province = conn.recv(BUFFER).decode()
+        if province == "Exit":
+            break
+        print(province)
+        data = getCovidData(province)
+        conn.send(str(data).encode())
     conn.close()
