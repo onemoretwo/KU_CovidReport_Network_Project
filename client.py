@@ -58,6 +58,8 @@ while True:
                     print("ไม่มีจังหวัดนี้ โปรดระบุชื่อจังหวัดใหม่")
                 else:
                     print("จำนวนผู้ป่วยในจังหวัด " , province , "มีจำนวน", data)
+            elif menu2 == "3":
+                break
             else:
                 print("ไม่มีเมนูนี้!")
                 continue
